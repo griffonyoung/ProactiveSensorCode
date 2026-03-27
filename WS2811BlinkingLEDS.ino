@@ -1,3 +1,10 @@
+//////////////////////////////////////////
+// This Program uses Arduino Uno.
+// For ESP32, use a different data pin
+// ESP32s use 3.3V logic. The WS2811 Protocol (This one) expects 5V. This might needed to be level shifted up.
+// Use external power (LEDS draw a lot)
+/////////////////////////////////////////
+
 #include <Adafruit_NeoPixel.h>
 
 #define PIN 6 //Data
@@ -17,8 +24,9 @@ void setup() {
   strip.show();
 }
 
+// Basic pulsing lights
 void loop(){
-  strip.setPixelColor(12, strip.Color(0,255,0));
+  strip.setPixelColor(12, strip.Color(0,255,0));  //strip.Color() for some reason uses (G,R,B) instead of (R,G,B). 
   strip.setBrightness(BRIGHTNESS);
   if(isBrightnessIncreasing){
     BRIGHTNESS += 10;
